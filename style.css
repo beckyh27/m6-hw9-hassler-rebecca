@@ -1,0 +1,25 @@
+
+body {
+    background-image: linear-gradient(rgb(12, 12, 142), rgb(118, 171, 251));
+    height: 100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat:no-repeat;
+    color: #fff;
+    text-align: center;
+}
+
+header {
+    padding: 0 20px;
+    font-size: 1.2rem;
+}
+
+input {
+    padding: 1px 10px;
+}
+
+button {
+    padding: 1px 5px;
+}
