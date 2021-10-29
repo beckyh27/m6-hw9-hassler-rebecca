@@ -4,15 +4,12 @@ var inputEl = document.querySelector('input')
 var weatherEl = document.getElementById('weather')
 console.log(formEl, inputEl, weatherEl)
 
-// attach submit to form event
-// fetch weather data if there is a query
-// call render weather function
-formEl.onsubmit = function(e) {
+formEl.onsubmit = function(e){
     e.preventDefault()
-    var query = inputEl.value.trim()
-    if (!query) return
+    var query = inputEl.value
     console.log(query)
-    fetch('api.openweathermap.org/data/2.5/weather?q=' + query + '&units=imperial&appid=fe1a8ee3b8894757366a34ae524f361a')
+    // fetch('api.openweathermap.org/data/2.5/weather?q=' + query + '&units=imperial&appid=fe1a8ee3b8894757366a34ae524f361a')
+    fetch('https://api.openweathermap.org/data/2.5/weather?appid=fe1a8ee3b8894757366a34ae524f361a&units=imperial&q=' + query)
     .then(function(response) {
         return response.json()
     })
@@ -23,7 +20,34 @@ formEl.onsubmit = function(e) {
     .catch(function(err){
         console.log(err)
     })
+
 }
+
+
+
+
+// attach submit to form event
+// fetch weather data if there is a query
+// call render weather function
+
+// formEl.onsubmit = function(e) {
+//     e.preventDefault()
+//     var query = inputEl.value.trim()
+//     if (!query) return
+//     console.log(query)
+//     fetch('api.openweathermap.org/data/2.5/weather?q=' + query + '&units=imperial&appid=fe1a8ee3b8894757366a34ae524f361a')
+//     .then(function(response) {
+//         return response.json()
+//     })
+//     .then(function(resultingJSON) {
+//         renderWeather(resultingJSON)
+//         inputEl.value = ""
+        
+//     })
+//     .catch(function(err){
+//         console.log(err)
+//     })
+// }
 
 // function renderWeather(weatherObj) {
 //     weatherEl.innerHTML = ""
@@ -31,6 +55,9 @@ formEl.onsubmit = function(e) {
 //         weatherEl.textContent = weatherObj.Error
 //         return
 //     }
+
+//     console.log(weatherObj.weather.main)
+
     // // create title
     // var title = document.createElement('h2')
     // title.textContent = movieObj.Title + " (" + movieObj.Year + ")"
@@ -54,6 +81,7 @@ formEl.onsubmit = function(e) {
     // plot.textContent = movieObj.Plot
     // plot.style= 'font-style: italic;'
     // movieEl.appendChild(plot)
+    // temp
 
     // //ratings
     // movieObj.Ratings.forEach(function(rating) {
