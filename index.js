@@ -20,6 +20,40 @@ formEl.onsubmit = function(e){
     .catch(function(err){
         console.log(err)
     })
+}
+
+function renderWeather(weatherObj) {
+    weatherEl.innerHTML = ""
+    // if (weatherObj.message) {
+    //     weatherEl.textContent = weatherObj.message
+    //     return
+    // }
+
+    // city
+    var city = document.createElement('h2')
+    city.textContent = weatherObj.name + ", " + weatherObj.sys.country
+    weatherEl.appendChild(city)
+
+    // icon
+    var icon = document.createElement('img')
+    icon.src = 'http://openweathermap.org/img/wn/' + weatherObj.weather[0].icon + '@2x.png' 
+    icon.alt = weatherObj.weather.icon
+    weatherEl.appendChild(icon)
+
+    // description
+    var description = document.createElement('h3')
+    description.textContent = weatherObj.weather[0].description
+    weatherEl.appendChild(description)
+
+    // current temp
+    var currentTemp = document.createElement('h3')
+    currentTemp.textContent = 'Current: ' + weatherObj.main.temp + '° F'
+    weatherEl.appendChild(currentTemp)
+
+    // feels like temp
+    var feelsLike = document.createElement('h3')
+    feelsLike.textContent = 'Feels like: ' + weatherObj.main.feels_like + '° F'
+    weatherEl.appendChild(feelsLike)
 
 }
 
