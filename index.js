@@ -46,12 +46,12 @@ function renderWeather(weatherObj) {
     weatherEl.appendChild(description)
 
     // current temp
-    var currentTemp = document.createElement('h3')
+    var currentTemp = document.createElement('h4')
     currentTemp.textContent = 'Current: ' + weatherObj.main.temp + '° F'
     weatherEl.appendChild(currentTemp)
 
     // feels like temp
-    var feelsLike = document.createElement('h3')
+    var feelsLike = document.createElement('h5')
     feelsLike.textContent = 'Feels like: ' + weatherObj.main.feels_like + '° F'
     weatherEl.appendChild(feelsLike)
 
