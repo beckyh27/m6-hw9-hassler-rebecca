@@ -32,6 +32,7 @@ function renderWeather(weatherObj) {
     // city
     var city = document.createElement('h2')
     city.textContent = weatherObj.name + ", " + weatherObj.sys.country
+    city.style = 'margin-bottom: 0; font-size: 1.6rem;'
     weatherEl.appendChild(city)
 
     // icon
@@ -43,16 +44,19 @@ function renderWeather(weatherObj) {
     // description
     var description = document.createElement('h3')
     description.textContent = weatherObj.weather[0].description
+    description.style = 'font-weight: normal; font-size: 1.2rem; text-transform: capitalize; margin-top: 0;'
     weatherEl.appendChild(description)
 
     // current temp
     var currentTemp = document.createElement('h4')
     currentTemp.textContent = 'Current: ' + weatherObj.main.temp + '° F'
+    currentTemp.style = 'font-weight: normal; font-size: 1.2rem; text-transform: capitalize; margin: 0;'
     weatherEl.appendChild(currentTemp)
 
     // feels like temp
     var feelsLike = document.createElement('h5')
     feelsLike.textContent = 'Feels like: ' + weatherObj.main.feels_like + '° F'
+    feelsLike.style = 'font-weight: normal; font-size: 1.2rem; text-transform: capitalize; margin: 0; padding-bottom: 30px;'
     weatherEl.appendChild(feelsLike)
 
 }
