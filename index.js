@@ -2,12 +2,11 @@
 var formEl = document.querySelector('form')
 var inputEl = document.querySelector('input')
 var weatherEl = document.getElementById('weather')
-console.log(formEl, inputEl, weatherEl)
 
 formEl.onsubmit = function(e){
     e.preventDefault()
-    var query = inputEl.value
-    console.log(query)
+    var query = inputEl.value.trim()
+    if (!query) return
     // fetch('api.openweathermap.org/data/2.5/weather?q=' + query + '&units=imperial&appid=fe1a8ee3b8894757366a34ae524f361a')
     fetch('https://api.openweathermap.org/data/2.5/weather?appid=fe1a8ee3b8894757366a34ae524f361a&units=imperial&q=' + query)
     .then(function(response) {
@@ -24,15 +23,16 @@ formEl.onsubmit = function(e){
 
 function renderWeather(weatherObj) {
     weatherEl.innerHTML = ""
-    // if (weatherObj.message) {
-    //     weatherEl.textContent = weatherObj.message
-    //     return
-    // }
+    if (weatherObj.message) {
+        weatherEl.textContent = 'Location not found'
+        weatherEl.style = 'padding: 10px 0; font-size: 1.6rem; font-weight: bold;'
+        return
+    }
 
     // city
     var city = document.createElement('h2')
     city.textContent = weatherObj.name + ", " + weatherObj.sys.country
-    city.style = 'margin-bottom: 0; font-size: 1.6rem;'
+    city.style = 'margin: 0; font-size: 1.6rem;'
     weatherEl.appendChild(city)
 
     // icon
