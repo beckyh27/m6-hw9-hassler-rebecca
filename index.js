@@ -7,7 +7,6 @@ formEl.onsubmit = function(e){
     e.preventDefault()
     var query = inputEl.value.trim()
     if (!query) return
-    // fetch('api.openweathermap.org/data/2.5/weather?q=' + query + '&units=imperial&appid=fe1a8ee3b8894757366a34ae524f361a')
     fetch('https://api.openweathermap.org/data/2.5/weather?appid=fe1a8ee3b8894757366a34ae524f361a&units=imperial&q=' + query)
     .then(function(response) {
         return response.json()
@@ -25,7 +24,7 @@ function renderWeather(weatherObj) {
     weatherEl.innerHTML = ""
     if (weatherObj.message) {
         weatherEl.textContent = 'Location not found'
-        weatherEl.style = 'padding: 10px 0; font-size: 1.6rem; font-weight: bold;'
+        weatherEl.style = 'padding: 10px 0 30px; font-size: 1.6rem; font-weight: bold;'
         return
     }
 
@@ -58,6 +57,30 @@ function renderWeather(weatherObj) {
     feelsLike.textContent = 'Feels like: ' + weatherObj.main.feels_like + '° F'
     feelsLike.style = 'font-weight: normal; font-size: 1.2rem; text-transform: capitalize; margin: 0; padding-bottom: 30px;'
     weatherEl.appendChild(feelsLike)
+
+    // time last updated
+    var timestamp = weatherObj.dt
+
+    function formatAMPM(timestamp) {
+
+        var date = new Date(timestamp * 1000)
+
+        var hours = date.getHours()
+        var minutes = date.getMinutes()
+
+        var ampm = hours >= 12 ? 'PM' : 'AM'
+        hours = hours % 12
+        hours = hours ? hours : 12
+        minutes = minutes < 10 ? '0' + minutes : minutes
+        var strTime = hours + ':' + minutes + ' ' + ampm
+
+        return strTime
+    }
+
+    var lastUpdated = document.createElement('h6')
+    lastUpdated.textContent = 'Last updated: ' + formatAMPM(timestamp) 
+    lastUpdated.style = 'font-weight: normal; font-size: 1.2rem; margin: 0; padding-bottom: 30px;'
+    weatherEl.appendChild(lastUpdated)
 
 }
 
